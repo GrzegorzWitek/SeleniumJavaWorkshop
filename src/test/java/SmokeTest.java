@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SmokeTest {
@@ -147,5 +148,43 @@ public class SmokeTest {
         Assert.assertEquals("Email address is different than expected. " +
                         "Expected: " + emailAddress + ". Actual : " + actualEmailAddress,
                 "jakistammail@gmail.com", actualEmailAddress);
+    }
+
+    @Test
+    public void listTest(){
+        int noOfElements = 7;
+        String productName = "dress";
+
+        driver.navigate().to("http://automationpractice.com");
+        List<WebElement> webElementList = driver.findElements(By.cssSelector("ul#homefeatured div.product-container a.product-name"));
+        boolean exist = false;
+        for (WebElement element:webElementList) {
+            if(element.getText().toLowerCase().contains(productName)){
+                exist = true;
+                break;
+            }
+        }
+
+        Assert.assertTrue("Wrong number of elements on page", webElementList.size() == noOfElements);
+        Assert.assertTrue("Proper product doesn't exist", exist);
+    }
+
+    @Test
+    public void listTestWithFind(){
+        int noOfElements = 7;
+        String productName = "dress";
+
+        driver.navigate().to("http://automationpractice.com");
+        List<WebElement> webElementList = driver.findElements(By.cssSelector("ul#homefeatured div.product-container"));
+        boolean exist = false;
+        for (WebElement element:webElementList) {
+            if(element.findElement(By.cssSelector("a.product-name")).getText().toLowerCase().contains(productName)){
+                exist = true;
+                break;
+            }
+        }
+
+        Assert.assertTrue("Wrong number of elements on page", webElementList.size() == noOfElements);
+        Assert.assertTrue("Proper product doesn't exist", exist);
     }
 }
