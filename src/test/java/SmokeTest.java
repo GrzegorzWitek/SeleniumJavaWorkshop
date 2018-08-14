@@ -1,4 +1,5 @@
 import junit.framework.AssertionFailedError;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -186,5 +187,20 @@ public class SmokeTest {
 
         Assert.assertTrue("Wrong number of elements on page", webElementList.size() == noOfElements);
         Assert.assertTrue("Proper product doesn't exist", exist);
+    }
+
+    @Test
+    public void softAssertion(){
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(true).as("Simple checking true value")
+                .isFalse();
+        softAssertions.assertThat(false).as("Simple checking false value")
+                .isTrue();
+        softAssertions.assertThat("Ala").as("Comparing two strings")
+                .isEqualTo("Ola");
+        softAssertions.assertThat(100).as("Comparing integers")
+                .isGreaterThan(200);
+
+        softAssertions.assertAll();
     }
 }
