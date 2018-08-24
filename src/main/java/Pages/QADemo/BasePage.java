@@ -11,10 +11,41 @@ public class BasePage {
 
     protected WebDriverWait wait;
     protected WebDriver driver;
+    protected String mainHandler;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 30);
+    }
+
+    public String getPageTitle(){
+        return driver.getTitle();
+    }
+
+    public void switchFromMainToNextWindow(){
+        mainHandler = driver.getWindowHandle();
+        for (String handler : driver.getWindowHandles()) {
+            if(!handler.equals(mainHandler)){
+                driver.switchTo().window(handler);
+                break;
+            }
+        }
+    }
+
+    public void switchToWindow(String handler){
+        driver.switchTo().window(handler);
+    }
+
+    public void switchToMain(){
+        switchToWindow(mainHandler);
+    }
+
+    public void acceptAlert(){
+        driver.switchTo().alert().accept();
+    }
+
+    public String getAlertText() {
+        return driver.switchTo().alert().getText();
     }
 
     protected void provideInput(By inputBy, CharSequence value){
