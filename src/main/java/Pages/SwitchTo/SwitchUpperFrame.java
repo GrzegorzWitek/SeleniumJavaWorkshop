@@ -1,6 +1,6 @@
 package Pages.SwitchTo;
 
-import Pages.QADemo.BasePage;
+import Pages.BasePage;
 import org.openqa.selenium.WebDriver;
 
 public class SwitchUpperFrame extends BasePage {

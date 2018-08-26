@@ -1,6 +1,6 @@
 package Pages.QADemo.PartsPages;
 
-import Pages.QADemo.BasePage;
+import Pages.BasePage;
 import Pages.QADemo.BuyingPages.CheckoutPage;
 import Pages.QADemo.ProductPages.SearchResultPage;
 import org.openqa.selenium.By;

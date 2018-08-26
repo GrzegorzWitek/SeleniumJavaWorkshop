@@ -1,5 +1,6 @@
 package Pages.QADemo;
 
+import Pages.BasePage;
 import Pages.QADemo.PartsPages.HeaderPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

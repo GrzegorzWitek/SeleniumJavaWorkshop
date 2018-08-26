@@ -1,6 +1,6 @@
 package Pages.SwitchTo;
 
-import Pages.QADemo.BasePage;
+import Pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,7 +10,8 @@ public class SwitchMainPage extends BasePage {
     }
 
     public SwitchUpperFrame goToUpperFrame(){
-        driver.switchTo().frame(driver.findElement(By.cssSelector("frame[src='htmlf.htm']")));
+        driver.switchTo().frame(driver.findElement(
+                By.cssSelector("frame[src='htmlf.htm']")));
         return new SwitchUpperFrame(driver);
     }
 
