@@ -2,7 +2,6 @@ package Pages.QADemo.BuyingPages;
 
 import Pages.QADemo.ContentBasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -17,10 +16,6 @@ public class CheckoutSummaryPage extends ContentBasePage {
     private final By phoneInputBy = By.cssSelector("input#wpsc_checkout_form_18");
     private final By countryInputBy = By.cssSelector("select#wpsc_checkout_form_7");
     private final By purchaseButtonBy = By.cssSelector("input.make_purchase");
-
-    public CheckoutSummaryPage(WebDriver driver) {
-        super(driver);
-    }
 
     public CheckoutSummaryPage setEmail(String email){
         wait.until(ExpectedConditions.elementToBeClickable(findElement(emailInputBy)));
@@ -71,7 +66,7 @@ public class CheckoutSummaryPage extends ContentBasePage {
 
     public TransactionResultPage clickPurchase(){
         clickOnElement(purchaseButtonBy);
-        return new TransactionResultPage(driver);
+        return new TransactionResultPage();
     }
 
     public TransactionResultPage setCheckoutDataAndPurchase(String email, String firstName, String lastName, String address, String city, String state, String phone, String country){

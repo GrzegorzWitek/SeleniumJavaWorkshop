@@ -12,17 +12,13 @@ public class HeaderPage extends BasePage {
     private final By goToCardButton = By.cssSelector("div#header_cart");
     private final By searchInput = By.cssSelector("input.search");
 
-    public HeaderPage(WebDriver driver) {
-        super(driver);
-    }
-
     public CheckoutPage clickCartButton(){
         clickOnElement(goToCardButton);
-        return new CheckoutPage(driver);
+        return new CheckoutPage();
     }
 
     public SearchResultPage searchProduct(String searchProductName){
         provideInput(searchInput, searchProductName + Keys.ENTER);
-        return new SearchResultPage(driver);
+        return new SearchResultPage();
     }
 }

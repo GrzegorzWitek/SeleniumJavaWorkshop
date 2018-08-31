@@ -12,9 +12,8 @@ public class ContentBasePage extends BasePage {
 
     public HeaderPage header;
 
-    public ContentBasePage(WebDriver driver) {
-        super(driver);
-        header = new HeaderPage(driver);
+    public ContentBasePage() {
+        header = new HeaderPage();
     }
 
     protected void waitForAddToCartMessage(){

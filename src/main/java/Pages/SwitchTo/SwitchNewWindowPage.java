@@ -1,21 +1,16 @@
 package Pages.SwitchTo;
 
 import Pages.BasePage;
-import org.openqa.selenium.WebDriver;
 
 public class SwitchNewWindowPage extends BasePage {
-    public SwitchNewWindowPage(WebDriver driver) {
-        super(driver);
-    }
 
-    public SwitchNewWindowPage(WebDriver driver, String handler) {
-        super(driver);
+    public SwitchNewWindowPage(String handler) {
         mainHandler=handler;
     }
 
     public SwitchMainPage returnToMainPage() {
-        driver.close();
+        windowsHelper.closeWindow();
         switchToMain();
-        return new SwitchMainPage(driver);
+        return new SwitchMainPage();
     }
 }

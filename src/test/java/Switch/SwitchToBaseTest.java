@@ -1,28 +1,16 @@
 package Switch;
 
+import Driver.Driver;
 import Pages.SwitchTo.SwitchMainPage;
-import org.junit.After;
+import TestConfig.MasterTest;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SwitchToBaseTest {
-    private WebDriver driver;
+public class SwitchToBaseTest extends MasterTest {
     protected SwitchMainPage mainPage;
 
     @Before
     public void initializeDriver(){
-        System.setProperty("webdriver.chrome.driver",
-                "src/main/resources/chromedriver.exe");
-
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.navigate().to("http://www.maths.surrey.ac.uk/explore/nigelspages/frame2.htm");
-        mainPage = new SwitchMainPage(driver);
+        mainPage = Driver.loadSwitchMainPage();
     }
 
-    @After
-    public void quitDriver(){
-        driver.quit();
-    }
 }

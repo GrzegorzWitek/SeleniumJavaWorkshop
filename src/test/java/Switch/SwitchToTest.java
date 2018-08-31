@@ -27,8 +27,8 @@ public class SwitchToTest extends SwitchToBaseTest {
     public void CheckAndAcceptAlert(){
         SwitchMiddleFrame switchMiddleFrame = mainPage.goToMiddleFrame()
                 .clickSubmitButton();
-        String alertText = switchMiddleFrame.getAlertText();
-        switchMiddleFrame.acceptAlert();
+        String alertText = switchMiddleFrame.windowsHelper.getAlertText();
+        switchMiddleFrame.windowsHelper.acceptAlert();
 
         Assert.assertEquals("Wrong alert message",
                 "\nThe NAME field is blank.\n\nPlease enter your name.",alertText);

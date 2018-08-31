@@ -2,7 +2,6 @@ package Pages.QADemo.BuyingPages;
 
 import Pages.QADemo.ContentBasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class CheckoutPage extends ContentBasePage {
 
@@ -10,18 +9,14 @@ public class CheckoutPage extends ContentBasePage {
     private final By checkoutContentBy = By.cssSelector("div.entry-content");
     private final By continueToCheckoutButton = By.cssSelector("a.step2");
 
-    public CheckoutPage(WebDriver driver) {
-        super(driver);
-    }
-
     public CheckoutPage clickRemoveProduct(){
         clickOnElement(removeProductButton);
-        return new CheckoutPage(driver);
+        return new CheckoutPage();
     }
 
     public CheckoutSummaryPage clickContinueButton(){
         clickOnElement(continueToCheckoutButton);
-        return new CheckoutSummaryPage(driver);
+        return new CheckoutSummaryPage();
     }
 
     public String getCheckoutContent(){
