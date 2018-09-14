@@ -1,5 +1,7 @@
 package APTests;
 
+import TestData.TestDataReader;
+import TestData.TestObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,25 +16,24 @@ import java.util.Collection;
 public class APLinkTest extends APBaseTest{
 
     @Parameter(0)
-    public String targetPage;
-    @Parameter(1)
-    public String targetPageTitle;
+    public String fileName;
 
-    @Parameters(name = "{index}: Open social link for {0} and expect title with {1}")
+    @Parameters(name = "{index}: Open social link for {0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"facebook", "facebook"},
-                {"twitter", "twitter"},
-                {"youtube", "youtube"},
-                {"google-plus", "google+"}
+                {"facebook"},
+                {"twitter"},
+                {"youtube"},
+                {"google"}
         });
     }
 
     @Test
     public void SocialLinkTest(){
-        String pageTitle = mainPage.Footer.clickSocialLink(targetPage).getPageTitle();
+        TestObject to = TestDataReader.readTestData(fileName);
+        String pageTitle = mainPage.Footer.clickSocialLink(to.portalLocator).getPageTitle();
 
-        Assert.assertTrue("Wrong page. Is " + pageTitle + " but expected title should contains "+ targetPageTitle,
-                pageTitle.toLowerCase().contains(targetPageTitle));
+        Assert.assertTrue("Wrong page. Is " + pageTitle + " but expected title should contains "+ to.portalLink,
+                pageTitle.toLowerCase().contains(to.portalLink));
     }
 }

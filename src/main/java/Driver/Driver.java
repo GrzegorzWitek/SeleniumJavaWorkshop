@@ -2,11 +2,10 @@ package Driver;
 
 import Pages.QADemo.MainPage;
 import Pages.SwitchTo.SwitchMainPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
+import static Driver.DriverManager.createChromeDriver;
+import static Driver.DriverManager.createFirefoxDriver;
 
 public class Driver {
 
@@ -14,12 +13,32 @@ public class Driver {
 
     public static WebDriver getDriver() {
         if (null == driver) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver = createChromeDriver();
         }
         return driver;
+    }
+
+    public static WebDriver getDriver(EBrowser browser) {
+        switch (browser){
+            case FIREFOX:
+                driver = createFirefoxDriver();
+                break;
+            case CHROME:
+            default:
+                driver = createChromeDriver();
+                break;
+        }
+        return driver;
+    }
+
+    public static EBrowser getBrowserName(){
+        switch(System.getProperty("browserName").toLowerCase()){
+            case "firefox":
+                return EBrowser.FIREFOX;
+            case "chrome":
+            default:
+                return EBrowser.CHROME;
+        }
     }
 
     public static void quit() {
@@ -46,7 +65,4 @@ public class Driver {
         return new SwitchMainPage();
     }
 
-
-
 }
-

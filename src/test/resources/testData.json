@@ -1,0 +1,13 @@
+{
+  "objectName": "My awesome object",
+  "testData":[
+    {
+      "name": "example",
+      "value": "value"
+    },
+    {
+      "name": "stupid example",
+      "value": "smart value"
+    }
+  ]
+}

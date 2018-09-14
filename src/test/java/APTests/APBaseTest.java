@@ -10,7 +10,7 @@ public class APBaseTest extends MasterTest {
 
     @Before
     public void initializeDriver(){
-        Driver.getDriver().navigate().to("http://automationpractice.com");
+        Driver.getDriver(Driver.getBrowserName()).navigate().to("http://automationpractice.com");
         mainPage = new APMainPage();
     }
 

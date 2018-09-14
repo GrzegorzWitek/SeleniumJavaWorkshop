@@ -17,6 +17,7 @@
         <aspectj.version>1.8.10</aspectj.version>
     </properties>
 
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -65,6 +66,28 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>1.7.25</version>
         </dependency>
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -101,10 +124,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <forkCount>4</forkCount>
+                    <systemPropertyVariables>
+                        <browserName>chrome</browserName>
+                    </systemPropertyVariables>
+                    <parallel>classes</parallel>
+                    <threadCount>10</threadCount>
                     <reuseForks>true</reuseForks>
                     <includes>
-                        <include>**//**.java</include>
+                        <include>**//APLinkFileTest.java</include>
                     </includes>
                     <argLine>
                          -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -136,6 +163,14 @@
                     </httpConnector>
                     <stopKey>stop</stopKey>
                     <stopPort>1234</stopPort>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>

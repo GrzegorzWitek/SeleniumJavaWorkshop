@@ -1,5 +1,7 @@
 import Driver.Driver;
 import TestConfig.MasterTest;
+import TestData.TestObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import junit.framework.AssertionFailedError;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
@@ -10,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -188,5 +192,20 @@ public class SmokeTest extends MasterTest {
                 .isGreaterThan(200);
 
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void readingDataFromJson(){
+        TestObject to = null;
+        try {
+            File a = new File("./src/test/resources/testData.json");
+            to = new ObjectMapper().readValue(a,TestObject.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(to.objectName);
+        System.out.println(to.getTestDataValueFor("stupid example"));
+
     }
 }
